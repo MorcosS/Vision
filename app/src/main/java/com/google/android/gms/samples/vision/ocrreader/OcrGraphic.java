@@ -31,7 +31,7 @@ import com.google.android.gms.vision.text.TextBlock;
 public class OcrGraphic extends GraphicOverlay.Graphic {
 
     private int mId;
-
+    boolean read;
     private static final int TEXT_COLOR = Color.WHITE;
 
     private static Paint sRectPaint;
@@ -172,76 +172,83 @@ public class OcrGraphic extends GraphicOverlay.Graphic {
 
             }
         }else if(OcrCaptureActivity.meter2){
-            String myText = text.getValue();
+                String myText = text.getValue();
 
-           try{
-               myText = myText.split("CE")[1];
-               myText = myText.split("cE")[1];
+                try {
+                    myText = myText.split("CE")[1];
+                    myText = myText.split("cE")[1];
 
-           }catch(Exception e){
+                } catch (Exception e) {
 
-           }
-            try {   // Draws the bounding box around the TextBlock.
-                ocrText = "";
-                myText = myText.split("\n")[0];
-                myText = myText.replace(" ", "");
-                myText = myText.split("m")[0];
-                if(!(myText.equalsIgnoreCase("DSSD")||myText.equalsIgnoreCase("p01")||
-                        myText.equalsIgnoreCase("ulp") || myText.contains("201"))) {
-                    if (myText == "") {
-                        return;
-                    }
-                    for (int i = 0; i < myText.length(); i++) {
-                        switch (myText.charAt(i)) {
-                            case 'I':
-                            case 'T':
-                            case 'i':
-                                ocrText += 1;
-                                break;
-                            case 'D':
-                            case 'o':
-                            case 'C':
-                            case 'O':
-                                ocrText += 0;
-                                break;
-                            case 'A':
-                                ocrText += 4;
-                                break;
-                            case 'G':
-                                ocrText += 0;
-                                break;
-                            case 'B':
-                                ocrText += 8;
-                                break;
-                            case 'S':
-                            case 's':
-                                ocrText += 5;
-                                break;
-                            case '.':
-                            case ' ':
-                            case 'm':
-                                ocrText += "";
-                                break;
-                            default:
-                                ocrText += myText.charAt(i);
-                        }
-                        Log.v("hihihi", i + "myText");
-                    }
-                    RectF rect = new RectF(text.getBoundingBox());
-                    rect.left = translateX(rect.left);
-                    rect.top = translateY(rect.top);
-                    rect.right = translateX(rect.right);
-                    rect.bottom = translateY(rect.bottom);
-                    canvas.drawRect(rect, sRectPaint);
-                    canvas.drawText(ocrText, rect.left, rect.bottom, sTextPaint);
-                    OcrCaptureActivity.backPressed = 0;
-                    MainActivity.ocrDetect++;
-                    MainActivity.ocrFinal="";
-                    MainActivity.ocrFinal = ocrText;
                 }
-            } catch (Exception e) {
+                try {   // Draws the bounding box around the TextBlock.
+                    ocrText = "";
+                    myText = myText.split("\n")[0];
+                    myText = myText.replace(" ", "");
+                    myText = myText.split("m")[0];
+                    if (!(myText.equalsIgnoreCase("DSSD") || myText.equalsIgnoreCase("p01") ||
+                            myText.equalsIgnoreCase("ulp") || myText.contains("Q") || myText.contains("r")
+                            || myText.contains("2014"))) {
+                        if (myText == "") {
+                            return;
+                        }
+                        for (int i = 0; i < myText.length(); i++) {
+                            switch (myText.charAt(i)) {
+                                case 'I':
+                                case 'T':
+                                case 'i':
+                                    ocrText += 1;
+                                    break;
+                                case 'D':
+                                case 'o':
+                                case 'C':
+                                case 'O':
+                                    ocrText += 0;
+                                    break;
+                                case 'A':
+                                    ocrText += 4;
+                                    break;
+                                case 'G':
+                                    ocrText += 0;
+                                    break;
+                                case 'B':
+                                    ocrText += 8;
+                                    break;
+                                case 'S':
+                                case 's':
+                                    ocrText += 5;
+                                    break;
+                                case '.':
+                                case ' ':
+                                case 'm':
+                                    ocrText += "";
+                                    break;
+                                default:
+                                    ocrText += myText.charAt(i);
+                            }
+                            Log.v("hihihi", i + "myText");
+                        }
+                        try {
+                            Integer.parseInt(ocrText);
+                            RectF rect = new RectF(text.getBoundingBox());
+                            rect.left = translateX(rect.left);
+                            rect.top = translateY(rect.top);
+                            rect.right = translateX(rect.right);
+                            rect.bottom = translateY(rect.bottom);
+                            canvas.drawRect(rect, sRectPaint);
+                            canvas.drawText(ocrText, rect.left, rect.bottom, sTextPaint);
+                            OcrCaptureActivity.backPressed = 0;
+                            MainActivity.ocrDetect++;
+                            MainActivity.ocrFinal = "";
+                            MainActivity.ocrFinal = ocrText;
+                        }catch (Exception e){
 
-            }
+                        }
+                    }
+
+                } catch (Exception e) {
+
+                }
 
         }
         // Break the text into multiple lines and draw each one according to its own bounding box.

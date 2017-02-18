@@ -8,18 +8,19 @@ import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Build;
-import com.google.android.gms.samples.vision.ocrreader.Databases.ServiceDBContract.GPSEntry;
 
+import com.google.android.gms.samples.vision.ocrreader.Databases.ServiceDBContract.GPSEntry;
 import com.google.android.gms.samples.vision.ocrreader.Databases.ServiceDBContract.GPSFetching;
 import com.google.android.gms.samples.vision.ocrreader.Databases.ServiceDBContract.ReadingsEntry;
 import com.google.android.gms.samples.vision.ocrreader.Models.Customers;
+import com.google.android.gms.samples.vision.ocrreader.Models.Reading;
 
 /**
  * Created by MorcosS on 9/25/16.
  */
 public class ServiceDB extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
     private static final String CREATE_TABLE_Reading = "CREATE TABLE "
             + "Reading_Item" + "(" + "ID" + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," + "Reading_No"
             + " STRING," + "Person_ID String," + "Reading_Time String," + " X double, Y double)";
@@ -39,6 +40,20 @@ public class ServiceDB extends SQLiteOpenHelper {
 //                + "Reading_Item" + "(" + "ID" + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," + "Reading_No"
 //                + " STRING," + "Person_ID String," + "Reading_Time String," + " X double, Y double)";
 
+        final String SQL_CREATE_GPS_TABLE = "CREATE TABLE " + GPSEntry.TABLE_NAME + " (" +
+                // Why AutoIncrement here, and not above?
+                // Unique keys will be auto-generated in either case.  But for weather
+                // forecasting, it's reasonable to assume the user will want information
+                // for a certain date and all dates *following*, so the forecast data
+                // should be sorted accordingly.
+                GPSEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+
+                // the ID of the location entry associated with this weather data
+                GPSEntry.COLUMN_cst_parcode + " STRING NOT NULL, " +
+                GPSEntry.COLUMN_GPS_X + " STRING NOT NULL, " +
+                GPSEntry.COLUMN_GPS_Y + " STRING STRING NULL)";
+        db.execSQL(SQL_CREATE_GPS_TABLE);
+
         final String SQL_CREATE_RDG_TABLE = "CREATE TABLE " + ReadingsEntry.TABLE_NAME + " (" +
                 // Why AutoIncrement here, and not above?
                 // Unique keys will be auto-generated in either case.  But for weather
@@ -50,11 +65,7 @@ public class ServiceDB extends SQLiteOpenHelper {
                 // the ID of the location entry associated with this weather data
                 ReadingsEntry.COLUMN_CST_PARCODE + " STRING NOT NULL, " +
                 ReadingsEntry.COLUMN_DATE + " STRING NOT NULL, " +
-                ReadingsEntry.COLUMN_CST_RDG + " TEXT STRING NULL, " +
-
-                // Set up the location column as a foreign key to location table.
-                " FOREIGN KEY (" + ReadingsEntry.COLUMN_CST_PARCODE + ") REFERENCES " +
-                GPSFetching.TABLE_NAME + " (" + GPSFetching.COLUMN_cst_parcode + "); " ;
+                ReadingsEntry.COLUMN_CST_RDG + " TEXT STRING NULL); " ;
         db.execSQL(SQL_CREATE_RDG_TABLE);
 
 
@@ -64,63 +75,115 @@ public class ServiceDB extends SQLiteOpenHelper {
                 // forecasting, it's reasonable to assume the user will want information
                 // for a certain date and all dates *following*, so the forecast data
                 // should be sorted accordingly.
-                GPSEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                GPSEntry.COLUMN_cst_name + " STRING NOT NULL, " +
+                GPSFetching._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 // the ID of the location entry associated with this weather data
-                GPSEntry.COLUMN_cst_parcode + " STRING NOT NULL, " +
-                GPSEntry.COLUMN_GPS_X + " DECIMAL STRING NULL, " +
-                GPSEntry.COLUMN_GPS_Y + " DECIMAL STRING NULL, " + "); " ;
+                GPSFetching.COLUMN_cst_parcode + " STRING NOT NULL, " +
+                GPSFetching.COLUMN_cst_name + " STRING NOT NULL, "+
+                GPSFetching.COLUMN_GPS_X + " DECIMAL, " +
+                GPSFetching.COLUMN_GPS_Y + " DECIMAL " + "); " ;
         db.execSQL(SQL_CREATE_GPS_ENTRY);
     }
 
 
-    public boolean addOrder(String Reading_NO, String Person_ID, String Reading_Time, double X, double Y) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put("Reading_Time", Reading_Time);
-        values.put("Person_ID", Person_ID);
-        values.put("Reading_No", Reading_NO);
-        values.put("X", X);
-        values.put("Y", Y);
-        long movie_row = db.insert("Reading_Item", null, values);
-        db.close(); // Closing database connection
-        if (movie_row == -1) {
-            return false;
-        } else {
-            return true;
-        }
-    }
+//    public boolean addOrder(String Reading_NO, String Person_ID, String Reading_Time, double X, double Y) {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        ContentValues values = new ContentValues();
+//        values.put("Reading_Time", Reading_Time);
+//        values.put("Person_ID", Person_ID);
+//        values.put("Reading_No", Reading_NO);
+//        values.put("X", X);
+//        values.put("Y", Y);
+//        long movie_row = db.insert("Reading_Item", null, values);
+//        db.close(); // Closing database connection
+//        if (movie_row == -1) {
+//            return false;
+//        } else {
+//            return true;
+//        }
+//    }
+//
+//    public Cursor getOrder() {
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        String selectQuery = "SELECT  * " + " FROM Reading_Item";
+//        Cursor c = db.rawQuery(selectQuery, null);
+//        if (c == null || !c.moveToFirst()) return null;
+//        return c;
+//    }
+//
+//    public void deleteOrder(int id) {
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        db.delete("Reading_Item", "ID = " + id, null);
+//    }
 
-    public Cursor getOrder() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String selectQuery = "SELECT  * " + " FROM Reading_Item";
-        Cursor c = db.rawQuery(selectQuery, null);
-        if (c == null || !c.moveToFirst()) return null;
-        return c;
-    }
-
-    public void deleteOrder(int id) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        db.delete("Reading_Item", "ID = " + id, null);
-    }
-
-    public Cursor FetchGPS(double Lat,double Lon, int radius) {
+    public Cursor FetchGPS(double Lat,double Lon, double radius) {
         SQLiteDatabase db = this.getReadableDatabase();
         String selectQuery = "SELECT * FROM "+ GPSFetching.TABLE_NAME +" WHERE " +
-                "acos(sin(1.3963) * sin("+Lat+") + cos(1.3963) * cos("+Lat+") * cos("+Lon+" - (-0.6981))) * 6371 <= "+radius;
+            GPSFetching.COLUMN_GPS_X  + " <= "+(Lat+(radius/110000.0)) + " AND "
+                +  GPSFetching.COLUMN_GPS_X  + " >= "+(Lat-(radius/110000.0)) + " AND "
+                +  GPSFetching.COLUMN_GPS_Y  + " <= "+(Lon+(radius/110000.0)) + " AND "
+                +  GPSFetching.COLUMN_GPS_Y  + " >= "+(Lon-(radius/110000.0));
         Cursor c = db.rawQuery(selectQuery, null);
+         if (c == null || !c.moveToFirst())
+            return null;
         db.close();
-        if (c == null || !c.moveToFirst()) return null;
         return c;
     }
 
     public boolean GPSEntryInsert(Customers cst){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(GPSEntry.COLUMN_cst_parcode, cst.getCst_ParCode());
-        values.put(GPSEntry.COLUMN_cst_name, cst.getCst_Name());
-        values.put(GPSEntry.COLUMN_GPS_X, cst.getCst_X());
-        values.put(GPSEntry.COLUMN_GPS_Y, cst.getCst_Y());
+        values.put(GPSFetching.COLUMN_cst_parcode, cst.getCst_ParCode());
+        values.put(GPSFetching.COLUMN_cst_name, cst.getCst_Name());
+        values.put(GPSFetching.COLUMN_GPS_X, cst.getCst_X());
+        values.put(GPSFetching.COLUMN_GPS_Y, cst.getCst_Y());
+        long row= db.insert(GPSFetching.TABLE_NAME, null, values);
+        db.close(); // Closing database connection
+        if (row== -1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public void deleteAllCSt() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(GPSFetching.TABLE_NAME,null, null);
+    }
+
+    public boolean InsertReading(Reading rdg){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(ReadingsEntry.COLUMN_CST_PARCODE, rdg.getCst_ParCode());
+        values.put(ReadingsEntry.COLUMN_CST_RDG, rdg.getRdg_value());
+        values.put(ReadingsEntry.COLUMN_DATE, rdg.getDateTime());
+        long row= db.insert(ReadingsEntry.TABLE_NAME, null, values);
+        db.close(); // Closing database connection
+        if (row== -1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public Cursor getReading() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectQuery = "SELECT  * " + " FROM " + ReadingsEntry.TABLE_NAME;
+        Cursor c = db.rawQuery(selectQuery, null);
+        if (c == null || !c.moveToFirst()) return null;
+        return c;
+    }
+
+    public void deleteReading(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.delete(ReadingsEntry.TABLE_NAME, ReadingsEntry._ID + " = " + id, null);
+    }
+
+    public boolean InsertGPS(String Cst_Parcode,String X, String Y){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(GPSEntry.COLUMN_cst_parcode, Cst_Parcode);
+        values.put(GPSEntry.COLUMN_GPS_X, X);
+        values.put(GPSEntry.COLUMN_GPS_Y, Y);
         long row= db.insert(GPSEntry.TABLE_NAME, null, values);
         db.close(); // Closing database connection
         if (row== -1) {
@@ -129,6 +192,20 @@ public class ServiceDB extends SQLiteOpenHelper {
             return true;
         }
     }
+
+    public Cursor getGPS() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectQuery = "SELECT  * " + " FROM " + GPSEntry.TABLE_NAME;
+        Cursor c = db.rawQuery(selectQuery, null);
+        if (c == null || !c.moveToFirst()) return null;
+        return c;
+    }
+
+    public void deleteGPS(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.delete(GPSEntry.TABLE_NAME, GPSEntry._ID + " = " + id, null);
+    }
+
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
@@ -144,4 +221,6 @@ public class ServiceDB extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + "Reading_Item" );
         onCreate(sqLiteDatabase);
     }
+
+
 }

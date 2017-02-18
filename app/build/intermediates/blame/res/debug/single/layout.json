@@ -48,6 +48,10 @@
         "source": "/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/select_dialog_singlechoice_material.xml"
     },
     {
+        "merged": "/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/res/merged/debug/layout/activity_picker.xml",
+        "source": "/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/src/main/res/layout/activity_picker.xml"
+    },
+    {
         "merged": "/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/res/merged/debug/layout/notification_media_action.xml",
         "source": "/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/notification_media_action.xml"
     },
@@ -112,12 +116,12 @@
         "source": "/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_screen_toolbar.xml"
     },
     {
-        "merged": "/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/res/merged/debug/layout/activity_login.xml",
-        "source": "/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/src/main/res/layout/activity_login.xml"
-    },
-    {
         "merged": "/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view_list_item.xml",
         "source": "/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_activity_chooser_view_list_item.xml"
+    },
+    {
+        "merged": "/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/res/merged/debug/layout/activity_login.xml",
+        "source": "/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/src/main/res/layout/activity_login.xml"
     },
     {
         "merged": "/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/res/merged/debug/layout/abc_dialog_title_material.xml",
@@ -148,12 +152,12 @@
         "source": "/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_menu_item_layout.xml"
     },
     {
-        "merged": "/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/res/merged/debug/layout/abc_alert_dialog_material.xml",
-        "source": "/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_alert_dialog_material.xml"
-    },
-    {
         "merged": "/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/res/merged/debug/layout/abc_action_mode_close_item_material.xml",
         "source": "/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_action_mode_close_item_material.xml"
+    },
+    {
+        "merged": "/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/res/merged/debug/layout/abc_alert_dialog_material.xml",
+        "source": "/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_alert_dialog_material.xml"
     },
     {
         "merged": "/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view.xml",
@@ -170,6 +174,10 @@
     {
         "merged": "/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_icon.xml",
         "source": "/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/layout/abc_list_menu_item_icon.xml"
+    },
+    {
+        "merged": "/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/res/merged/debug/layout/activity_gpssending.xml",
+        "source": "/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/src/main/res/layout/activity_gpssending.xml"
     },
     {
         "merged": "/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/res/merged/debug/layout/design_navigation_item_separator.xml",

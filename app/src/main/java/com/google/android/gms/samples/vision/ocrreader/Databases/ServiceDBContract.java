@@ -28,7 +28,6 @@ public class ServiceDBContract {
 
         public static final String TABLE_NAME = "com_send_gps";
 
-        public static final String COLUMN_cst_name= "cst_name";
 
         // Date, stored as long in milliseconds since the epoch
         public static final String COLUMN_cst_parcode = "cst_ParCode";

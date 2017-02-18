@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<instant-run
+    abi="arm64-v8a,armeabi-v7a,armeabi"
+    api-level="23"
+    density="xhdpi"
+    format="7"
+    timestamp="19232469391535"
+    verifier="STATIC_INITIALIZER_CHANGE" >
+
+    <task
+        name="javac"
+        duration="2485" />
+    <task
+        name="instant-run-dex"
+        duration="0" />
+    <task
+        name="instant-run-transform"
+        duration="11" />
+    <task
+        name="verifier"
+        duration="20" />
+
+    <artifact
+        location="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/res/resources-debug.ap_"
+        type="RESOURCES" />
+    <artifact
+        location="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_3/classes.dex"
+        type="DEX" />
+
+    <build timestamp="10360423078148" >
+        <artifact
+            location="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/outputs/apk/app-debug.apk"
+            type="MAIN" />
+    </build>
+    <build timestamp="12890421845911" >
+        <artifact
+            location="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_3ceee423cc640c6d29128e56f92cb29304ff1eea/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.volley-volley-1.0.0_137d989c3e9d09cad0715f78d630d27339376a5a/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/transforms/dex/debug/folders/1000/2/ksoap2-android-assembly-2.4-jar-with-dependencies_5a7684522732761c503ded29ce524bddd75b3f61/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-base-9.0.0_c6bc31d5c1672402a14e7cac1722e44cd0e3fde6/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_d47bb5be5442467bb1a70f4ea727e8ab200e827e/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-vision-9.0.0_a10142ed5da15e7676d4ccf01040f55d3bd80903/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.0.1_f17b58aff2c2a274a3770efb060d120f8d5bd389/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_8/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_9/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.0.1_1dedef07762b61553ed02702b04d7972c6949800/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_4/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_5/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_6/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-23.0.1_21f897080539b71042e33906a8805f8e52317115/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.0.1_b65d1883336b47592fefc3f64b988d7b89c17ed4/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_1/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_7/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_2/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.0.1_3555a078ef28f5f1c69daccf23ee21535e8d11a5/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-common-9.0.0_8ca65d328503efa1bc38506d12e80cc3bab820b8/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-basement-9.0.0_494641d9027ad461be792867a32c363c5fede46e/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tasks-9.0.0_ef8aee1ee8b25dc25c49b0ce945586a57ed88f09/classes.dex"
+            type="DEX" />
+        <artifact
+            location="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/transforms/dex/debug/folders/1000/10/gson-1.7.2_55652503e933a3064e3f67c2d962e6c35b7a5f73/classes.dex"
+            type="DEX" />
+    </build>
+    <build
+        timestamp="15859933010625"
+        verifier="STATIC_INITIALIZER_CHANGE" >
+        <artifact
+            location="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_0/classes.dex"
+            type="DEX" />
+    </build>
+    <build
+        timestamp="19232469391535"
+        verifier="STATIC_INITIALIZER_CHANGE" >
+        <artifact
+            location="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/res/resources-debug.ap_"
+            type="RESOURCES" />
+        <artifact
+            location="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_3/classes.dex"
+            type="DEX" />
+    </build>
+
+</instant-run>

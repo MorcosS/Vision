@@ -26,7 +26,11 @@
 
         <activity
             android:name=".MainActivity"
-            android:label="@string/title_activity_main"></activity>
+            android:label="@string/title_activity_main" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Picker_Activity" />
+        </activity>
 
         <receiver android:name=".Services.SendService">
             <intent-filter>
@@ -44,7 +48,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Picker_Activity"></activity>
+        <activity android:name=".Picker_Activity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".LoginActivity" />
+        </activity>
+        <activity android:name=".GPSSending">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Picker_Activity" />
+        </activity>
     </application>
 
 </manifest>

@@ -29,7 +29,7 @@
         android:layout_alignLeft="@+id/read_text"
         android:layout_alignStart="@+id/read_text" />
 
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="number"
@@ -38,18 +38,16 @@
         android:layout_below="@+id/textView"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_above="@+id/auto_focus"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_above="@+id/auto_focus" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/text_value"
-        android:layout_below="@+id/status_message"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="110dp"
-        android:layout_alignEnd="@+id/status_message" />
+        android:layout_alignEnd="@+id/status_message"
+        android:layout_above="@+id/checkBox2"
+        android:layout_below="@+id/use_flash" />
 
     <Button
         android:layout_width="wrap_content"
@@ -90,7 +88,7 @@
         android:layout_height="wrap_content"
         android:text="عداد رقم ١"
         android:id="@+id/checkBox"
-        android:checked="true"
+        android:checked="false"
         android:layout_alignParentBottom="true"
         android:layout_alignTop="@+id/read_text"
         android:layout_alignRight="@+id/auto_focus"
@@ -120,10 +118,22 @@
         android:layout_height="wrap_content"
         android:text="عداد رقم ٢"
         android:id="@+id/checkBox2"
-        android:checked="false"
+        android:checked="true"
         android:layout_above="@+id/checkBox"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignRight="@+id/checkBox"
         android:layout_alignEnd="@+id/checkBox" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/textView"
+        android:layout_above="@+id/auto_focus"
+        android:layout_alignRight="@+id/read_text"
+        android:layout_alignEnd="@+id/read_text" />
 </RelativeLayout>

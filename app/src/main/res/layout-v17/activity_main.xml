@@ -29,7 +29,7 @@
         android:layout_alignLeft="@+id/read_text"
         android:layout_alignStart="@+id/read_text" />
 
-    <EditText
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"
@@ -37,17 +37,19 @@
         android:id="@+id/editText2"
         android:layout_below="@+id/spinner"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:editable="false" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/text_value"
-        android:layout_below="@+id/status_message"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="110dp"
-        android:layout_alignEnd="@+id/status_message" />
+        android:layout_below="@+id/editText"
+        android:layout_alignRight="@+id/textView"
+        android:layout_alignEnd="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -91,7 +93,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/editText"
         android:layout_below="@+id/editText2"
-        android:visibility="gone" />
+        android:layout_alignRight="@+id/use_flash"
+        android:layout_alignEnd="@+id/use_flash"
+        android:visibility="gone"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -107,7 +111,7 @@
         android:layout_height="wrap_content"
         android:text="عداد رقم ١"
         android:id="@+id/checkBox"
-        android:checked="true"
+        android:checked="false"
         android:layout_above="@+id/read_text"
         android:layout_alignRight="@+id/button2"
         android:layout_alignEnd="@+id/button2"
@@ -119,7 +123,7 @@
         android:layout_height="wrap_content"
         android:text="عداد رقم ٢"
         android:id="@+id/checkBox2"
-        android:checked="false"
+        android:checked="true"
         android:layout_alignTop="@+id/checkBox"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"

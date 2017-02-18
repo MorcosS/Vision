@@ -22,17 +22,18 @@ import org.ksoap2.transport.AndroidHttpTransport;
  * Created by MorcosS on 9/25/16.
  */
 public class SendService extends BroadcastReceiver {
-    private static String SOAP_ACTION1 = "http://tempuri.org/InsertReading";
+    private static String SOAP_ACTION1 = "http://tempuri.org/SetCustomerRDG";
     private static String NAMESPACE = "http://tempuri.org/";
-    private static String METHOD_NAME1 = "InsertReading";
-    private static String METHOD_NAME2 = "GetDataResponse";
+    private static String METHOD_NAME1 = "SetCustomerRDG";
+    private static String SOAP_ACTION2 = "http://tempuri.org/SetCustomerGPS";
+    private static String METHOD_NAME2 = "SetCustomerGPS";
     private static String URL = "http://62.68.240.219/webserv/webservice2.asmx";
     boolean isConnected ;
 
     @Override
     public void onReceive(Context context, Intent intent) {
         ServiceDB dbHelper = new ServiceDB(context);
-        Cursor cursor = dbHelper.getOrder();
+        Cursor cursor = dbHelper.getReading();
         if(isNetworkAvailable(context)){
              if(cursor!=null){
                 SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME1);
@@ -41,11 +42,10 @@ public class SendService extends BroadcastReceiver {
                 if (cursor.moveToFirst()) {
                     do {
                         try{
-                            request.addProperty("CustomerCode", cursor.getString(2).split("C")[1]);
-                            request.addProperty("MeterReading", cursor.getString(1).split("R")[1]);
-                            request.addProperty("ReadingTime", cursor.getString(3));
-                            request.addProperty("X",cursor.getString(4));
-                            request.addProperty("Y", cursor.getString(5));
+                            request.addProperty("Cst_ParCode", cursor.getString(1));
+                            request.addProperty("rdg_Value", cursor.getString(3));
+                            request.addProperty("rdg_Time", cursor.getString(2));
+
                             //Declare the version of the SOAP request
                             SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
 
@@ -65,7 +65,7 @@ public class SendService extends BroadcastReceiver {
                                 SoapPrimitive result = (SoapPrimitive) envelope.getResponse();
 
                                 if (result.toString().equals("1")) {
-                                    dbHelper.deleteOrder(cursor.getInt(0));
+                                    dbHelper.deleteReading(cursor.getInt(0));
                                     //Get the first property and change the label text
                                     Toast.makeText(context, "تم ارسال القراءة بنجاح", Toast.LENGTH_LONG).show();
 
@@ -84,8 +84,59 @@ public class SendService extends BroadcastReceiver {
                         }
                     } while (cursor.moveToNext());
                 }
+
+            }
+            Cursor cursor1 = dbHelper.getGPS();
+            if(cursor1!=null){
+                SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME2);
+
+                //Use this to add parameters
+                if (cursor1.moveToFirst()) {
+                    do {
+                        try{
+                            request.addProperty("Cst_ParCode", cursor1.getString(1));
+                            request.addProperty("x", cursor1.getString(2));
+                             request.addProperty("y", cursor1.getString(3));
+
+                            //Declare the version of the SOAP request
+                            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+
+                            envelope.setOutputSoapObject(request);
+                            envelope.dotNet = true;
+                            if (android.os.Build.VERSION.SDK_INT > 9) {
+                                StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+                                StrictMode.setThreadPolicy(policy);
+                            }
+                            try {
+                                AndroidHttpTransport androidHttpTransport = new AndroidHttpTransport(URL);
+
+                                //this is the actual part that will call the webservice
+                                androidHttpTransport.call(SOAP_ACTION2, envelope);
+
+                                // Get the SoapResult from the envelope body.
+                                SoapPrimitive result = (SoapPrimitive) envelope.getResponse();
+
+                                if (result.toString().equals("1")) {
+                                    dbHelper.deleteGPS(cursor1.getInt(0));
+                                    //Get the first property and change the label text
+                                    Toast.makeText(context,"تم ازسال الموقع بنجاح", Toast.LENGTH_LONG).show();
+
+                                } else if(result.toString().equals("0")){
+                                    Log.v("hihello", result.toString());
+                                    Toast.makeText(context, "هذا المستخدم غير موجود بقاعدة البيانات بالرجاء المحاولة مرة أخري ", Toast.LENGTH_LONG).show();
+                                }
+                            } catch (Exception e) {
+                                e.printStackTrace();
+
+                            }
+                        }catch (java.lang.ArrayIndexOutOfBoundsException exception){
+                            }
+                    } while (cursor1.moveToNext());
+                }
+
             }
         }
+
     }
 
     private boolean isNetworkAvailable(Context context) {

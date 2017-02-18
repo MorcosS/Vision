@@ -16,6 +16,13 @@
         <dex dex="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/pre-dexed/debug/ksoap2-android-assembly-2.4-jar-with-dependencies_5a7684522732761c503ded29ce524bddd75b3f61.jar" />
     </item>
     <item
+        jar="/Users/MorcosS/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/1.7.2/112366d8158749e25532ebce162232c6e0fb20a5/gson-1.7.2.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="112366d8158749e25532ebce162232c6e0fb20a5">
+        <dex dex="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/pre-dexed/debug/gson-1.7.2_55652503e933a3064e3f67c2d962e6c35b7a5f73.jar" />
+    </item>
+    <item
         jar="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/exploded-aar/com.android.volley/volley/1.0.0/jars/classes.jar"
         jumboMode="false"
         revision="23.0.1"

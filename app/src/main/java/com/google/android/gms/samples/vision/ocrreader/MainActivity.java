@@ -22,6 +22,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -32,15 +33,20 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.samples.vision.ocrreader.Databases.ServiceDB;
+import com.google.android.gms.samples.vision.ocrreader.Models.Customers;
+import com.google.android.gms.samples.vision.ocrreader.Models.Reading;
 
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
@@ -48,7 +54,9 @@ import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.AndroidHttpTransport;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 /**
  * Main activity demonstrating how to pass extra parameters to an activity that
@@ -60,18 +68,19 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private CompoundButton autoFocus;
     private CompoundButton useFlash;
     private TextView statusMessage;
-    private TextView textValue;
-    private EditText editText, customerCode;
+    private TextView textValue, customerCode;
+    private EditText editText;
     private Button send, edit, ok;
     private static final int RC_OCR_CAPTURE = 9003;
     private static final String TAG = "MainActivity";
     public static int ocrDetect;
     public static String ocrFinal;
-    private static String SOAP_ACTION1 = "http://tempuri.org/InsertReading";
+    private static String SOAP_ACTION1 = "http://tempuri.org/SetCustomerRDG";
     private static String NAMESPACE = "http://tempuri.org/";
-    private static String METHOD_NAME1 = "InsertReading";
+    private static String METHOD_NAME1 = "SetCustomerRDG";
     private static String METHOD_NAME2 = "GetDataResponse";
     private static String URL = "http://62.68.240.219/webserv/webservice2.asmx";
+    public static double GPS_RADIUS =900;
     public static LocationManager Coordinates;
     ServiceDB serviceDB;
     private String custCode;
@@ -80,6 +89,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public static Location location;
     boolean GPSEnabled, NetworkEnabled;
 CheckBox meter1,meter2;
+    Spinner spinner;
     Calendar c;
 
     @Override
@@ -101,28 +111,61 @@ CheckBox meter1,meter2;
         meter1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-               if(meter1.isChecked()) {
-                   meter2.setChecked(false);
-               }else{
-                   meter2.setChecked(true);
-               }
+                if (meter1.isChecked()) {
+                    meter2.setChecked(false);
+                } else {
+                    meter2.setChecked(true);
+                }
             }
         });
         meter2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(meter2.isChecked()) {
+                if (meter2.isChecked()) {
                     meter1.setChecked(false);
-                }else{
+                } else {
                     meter1.setChecked(true);
                 }
             }
         });
         findViewById(R.id.read_text).setOnClickListener(this);
-        customerCode = (EditText) findViewById(R.id.editText2);
+        customerCode = (TextView) findViewById(R.id.editText2);
         _getLocation();
+        spinner = (Spinner) findViewById(R.id.spinner);
+        Cursor cursor = serviceDB.FetchGPS(lat, lon, MainActivity.GPS_RADIUS);
+        final List<Customers> myCustomersList = new ArrayList<>();
+        if(cursor!=null) {
+            if (cursor.moveToFirst()) {
+                do {
+                    Customers customers = new Customers(cursor.getString(2));
+                    customers.setCst_ParCode(cursor.getString(1));
+                    customers.setCst_X(cursor.getString(3));
+                    customers.setCst_Y(cursor.getString(4));
+                    myCustomersList.add(customers);
+                } while (cursor.moveToNext());
+            }
+            List<String> customersName = new ArrayList<>();
+            for (int i = 0; i < myCustomersList.size(); i++)
+            {
+                customersName.add(myCustomersList.get(i).getCst_Name());
+            }
+            ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, customersName); //selected item will look like a spinner set from XML
+            spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinner.setAdapter(spinnerArrayAdapter);
+            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    customerCode.setText(myCustomersList.get(i).getCst_ParCode());
 
-    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+
+                }
+            });
+        }
+        }
 
     /**
      * Called when a view has been clicked.
@@ -198,12 +241,10 @@ CheckBox meter1,meter2;
                             try {
                                 c = Calendar.getInstance();
                                 _getLocation();
-                                request.addProperty("CustomerCode", custCode);
-                                request.addProperty("MeterReading", text1);
-                                request.addProperty("ReadingTime", c.getTime().getDay() + "/" +
-                                        (c.getTime().getMonth() + 1) + "/" + (c.getTime().getYear() + 1900) + " " + c.getTime().getHours() + ":" + c.getTime().getMinutes());
-                                request.addProperty("X", lat+"");
-                                request.addProperty("Y", lon+"");
+                                Reading readingNow = new Reading(custCode,text1);
+                                request.addProperty("rdg_Value", readingNow.getRdg_value());
+                                request.addProperty("rdg_Time", readingNow.getDateTime());
+                                request.addProperty("Cst_ParCode", readingNow.getCst_ParCode());
                                 //Declare the version of the SOAP request
                                 SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
 
@@ -232,14 +273,14 @@ CheckBox meter1,meter2;
                                     e.printStackTrace();
                                      Log.v("hihello", e.toString());
                                     Toast.makeText(getApplicationContext(), " لا يوجد اتصال بالشبكة، سيتم ارسال الطلب فور توافر اتصال بالانترنت", Toast.LENGTH_LONG).show();
-                                    Log.v("hihello", serviceDB.addOrder("R"+text1, "C"+custCode, (c.getTime().getDay() + "/" +
-                                            (c.getTime().getMonth() + 1) + "/" + (c.getTime().getYear() + 1900)+ " " + c.getTime().getHours() + ":" + c.getTime().getMinutes() + ""),lat,lon)+"");
+                                     serviceDB.InsertReading(readingNow);
 
                                 }
                             } catch (Exception exception)
                             {
                                 Toast.makeText(getApplicationContext(), "بالرجاء إعادة التصوير مرة أخري ", Toast.LENGTH_LONG).show();
                             }
+
                         }
                     });
                     Log.d(TAG, "Text read: " + text);

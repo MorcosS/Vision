@@ -33,11 +33,9 @@
         <activity
             android:name="com.google.android.gms.samples.vision.ocrreader.MainActivity"
             android:label="@string/title_activity_main" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Picker_Activity" />
         </activity>
 
         <receiver android:name="com.google.android.gms.samples.vision.ocrreader.Services.SendService" >
@@ -49,7 +47,23 @@
         <activity
             android:name="com.google.android.gms.samples.vision.ocrreader.OcrCaptureActivity"
             android:label="Read Text" />
-        <activity android:name="com.google.android.gms.samples.vision.ocrreader.LoginActivity" />
+        <activity android:name="com.google.android.gms.samples.vision.ocrreader.LoginActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.google.android.gms.samples.vision.ocrreader.Picker_Activity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".LoginActivity" />
+        </activity>
+        <activity android:name="com.google.android.gms.samples.vision.ocrreader.GPSSending" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Picker_Activity" />
+        </activity>
         <activity
             android:name="com.google.android.gms.common.api.GoogleApiActivity"
             android:exported="false"

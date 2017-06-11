@@ -1,6 +1,6 @@
 [
     {
-        "merged": "/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/common_ic_googleplayservices.png",
-        "source": "/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/9.0.0/res/drawable-ldpi-v4/common_ic_googleplayservices.png"
+        "merged": "/Users/marcos/Coding World/StudioProjects/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/res/merged/debug/drawable-ldpi-v4/common_ic_googleplayservices.png",
+        "source": "/Users/marcos/.android/build-cache/5eabf087026472db51fac360704766ae9cdc7c63/output/res/drawable-ldpi-v4/common_ic_googleplayservices.png"
     }
 ]

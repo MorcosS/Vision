@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/res/merged/debug/values-xlarge-land-v4/values-xlarge-land-v4.xml",
+        "outputFile": "/Users/marcos/Coding World/StudioProjects/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-xlarge-land-v4/values-xlarge-land-v4.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 114
                 },
                 "from": {
-                    "file": "/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-xlarge-land/values-xlarge-land.xml",
+                    "file": "/Users/marcos/.android/build-cache/49642e67c5e7cc288f572cbb4314fdbbc012eedb/output/res/values-xlarge-land/values-xlarge-land.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="2"
+    tools:context="com.google.android.gms.samples.vision.ocrreader.MainActivity">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/ocr_header"
+        android:id="@+id/status_message"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_below="@+id/spinner"
+        android:layout_marginTop="13dp"
+        android:layout_weight="1.5"
+        android:weightSum="2">
+
+        <ListView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:layout_weight="1.5"
+            android:id="@+id/CustomerList"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="0.5">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="اسم المشترك:"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:id="@+id/cst_name"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" نوع العداد:"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/meterType"
+                android:layout_gravity="right">
+
+            </TextView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="حالة العداد:"/>
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/meterStatus"
+                android:entries="@array/meter_status_array">
+
+            </Spinner>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ملاحظات:"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="143dp"
+                android:inputType="textMultiLine"
+                android:id="@+id/description" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:orientation="vertical">
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/auto_focus"
+        android:id="@+id/auto_focus"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:checked="true" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/use_flash"
+        android:id="@+id/use_flash"
+        android:layout_alignTop="@+id/auto_focus"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:checked="true" />
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="إرسال"
+        android:id="@+id/button2"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/read_text"
+        android:layout_toEndOf="@+id/read_text" />
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/read_text"
+            android:id="@+id/read_text"
+            android:layout_alignTop="@+id/button2"
+            android:layout_toLeftOf="@+id/use_flash"
+            android:layout_toStartOf="@+id/use_flash"
+            android:onClick="onClick" />
+
+        <TextView
+            android:text="اكتب قراءة عداد المصانع هنا"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/use_flash"
+            android:layout_alignLeft="@+id/use_flash"
+            android:layout_alignStart="@+id/use_flash"
+            android:id="@+id/writeArabic"
+            android:visibility="gone"/>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:id="@+id/MeterRdg"
+            android:inputType="text|number"
+            android:layout_above="@+id/read_text"
+            android:layout_toRightOf="@+id/writeArabic"
+            android:layout_toEndOf="@+id/writeArabic"
+            android:visibility="gone"/>
+
+        <EditText
+            android:layout_width="30sp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:layout_above="@+id/button2"
+            android:layout_toRightOf="@+id/MeterRdg"
+            android:id="@+id/editRDG"
+            android:maxLength="1"
+            android:visibility="gone"/>
+
+    </RelativeLayout>
+</LinearLayout>

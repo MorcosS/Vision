@@ -99,7 +99,8 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignLeft="@+id/read_text"
-        android:layout_alignStart="@+id/read_text" />
+        android:layout_alignStart="@+id/read_text"
+        android:visibility="gone"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -140,5 +141,72 @@
         android:id="@+id/spinner"
         android:layout_below="@+id/textView"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/spinner"
+        android:layout_marginTop="13dp"
+        android:layout_above="@+id/use_flash"
+        android:weightSum="2">
+
+        <ListView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:layout_weight="1"
+            android:id="@+id/CustomerList"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="اسم المشترك:"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:id="@+id/cst_name"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" نوع العداد:"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:id="@+id/meterType">
+
+                </TextView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="حالة العداد:"/>
+               <Spinner
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:id="@+id/meterStatus"
+                   android:entries="@array/meter_status_array">
+
+               </Spinner>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ملاحظات:"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:id="@+id/editText4" />
+        </LinearLayout>
+
+
+    </LinearLayout>
 </RelativeLayout>

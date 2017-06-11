@@ -8,13 +8,31 @@ import java.util.Date;
  */
 public class Reading {
     String rdg_value, Cst_ParCode;
-    String dateTime;
+    String dateTime,description,meter_status;
+
+
 
     public Reading(String Cst_ParCode, String rdg_value) {
         SimpleDateFormat dateFormatLocal = new SimpleDateFormat("yyyy-MMM-dd HH:mm:ss");
         dateTime = dateFormatLocal.format(new Date());
         this.rdg_value = rdg_value;
         this.Cst_ParCode = Cst_ParCode;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getMeter_status() {
+        return meter_status;
+    }
+
+    public void setMeter_status(String meter_status) {
+        this.meter_status = meter_status;
     }
 
     public String getRdg_value() {

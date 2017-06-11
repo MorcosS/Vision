@@ -8,6 +8,7 @@ import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Build;
+import android.util.Log;
 
 import com.google.android.gms.samples.vision.ocrreader.Databases.ServiceDBContract.GPSEntry;
 import com.google.android.gms.samples.vision.ocrreader.Databases.ServiceDBContract.GPSFetching;
@@ -20,7 +21,7 @@ import com.google.android.gms.samples.vision.ocrreader.Models.Reading;
  */
 public class ServiceDB extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
     private static final String CREATE_TABLE_Reading = "CREATE TABLE "
             + "Reading_Item" + "(" + "ID" + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," + "Reading_No"
             + " STRING," + "Person_ID String," + "Reading_Time String," + " X double, Y double)";
@@ -51,7 +52,9 @@ public class ServiceDB extends SQLiteOpenHelper {
                 // the ID of the location entry associated with this weather data
                 GPSEntry.COLUMN_cst_parcode + " STRING NOT NULL, " +
                 GPSEntry.COLUMN_GPS_X + " STRING NOT NULL, " +
-                GPSEntry.COLUMN_GPS_Y + " STRING STRING NULL)";
+                GPSEntry.COLUMN_GPS_Y + " STRING STRING NULL," +
+                GPSEntry.COLUMN_METER_TYPE + " INTEGER NULL" +
+                ");";
         db.execSQL(SQL_CREATE_GPS_TABLE);
 
         final String SQL_CREATE_RDG_TABLE = "CREATE TABLE " + ReadingsEntry.TABLE_NAME + " (" +
@@ -65,7 +68,10 @@ public class ServiceDB extends SQLiteOpenHelper {
                 // the ID of the location entry associated with this weather data
                 ReadingsEntry.COLUMN_CST_PARCODE + " STRING NOT NULL, " +
                 ReadingsEntry.COLUMN_DATE + " STRING NOT NULL, " +
-                ReadingsEntry.COLUMN_CST_RDG + " TEXT STRING NULL); " ;
+                ReadingsEntry.COLUMN_CST_RDG + " TEXT STRING NULL," +
+                ReadingsEntry.COLUMN_METER_STATUS +"INTEGER NULL," +
+                ReadingsEntry.COLUMN_DESCRIPTION + "TEXT STRING NULL " +
+                "); " ;
         db.execSQL(SQL_CREATE_RDG_TABLE);
 
 
@@ -80,7 +86,9 @@ public class ServiceDB extends SQLiteOpenHelper {
                 GPSFetching.COLUMN_cst_parcode + " STRING NOT NULL, " +
                 GPSFetching.COLUMN_cst_name + " STRING NOT NULL, "+
                 GPSFetching.COLUMN_GPS_X + " DECIMAL, " +
-                GPSFetching.COLUMN_GPS_Y + " DECIMAL " + "); " ;
+                GPSFetching.COLUMN_GPS_Y + " DECIMAL, " +
+                GPSFetching.COLUMN_CST_METER_TYPE + " INTEGER, " +
+                GPSFetching.COLUMN_CST_METER_STATUS + " INTEGER " + "); " ;
         db.execSQL(SQL_CREATE_GPS_ENTRY);
     }
 
@@ -115,6 +123,8 @@ public class ServiceDB extends SQLiteOpenHelper {
 //        db.delete("Reading_Item", "ID = " + id, null);
 //    }
 
+    //Still To Review for the new UPDATE
+
     public Cursor FetchGPS(double Lat,double Lon, double radius) {
         SQLiteDatabase db = this.getReadableDatabase();
         String selectQuery = "SELECT * FROM "+ GPSFetching.TABLE_NAME +" WHERE " +
@@ -136,6 +146,8 @@ public class ServiceDB extends SQLiteOpenHelper {
         values.put(GPSFetching.COLUMN_cst_name, cst.getCst_Name());
         values.put(GPSFetching.COLUMN_GPS_X, cst.getCst_X());
         values.put(GPSFetching.COLUMN_GPS_Y, cst.getCst_Y());
+        values.put(GPSFetching.COLUMN_CST_METER_TYPE, cst.getMeter_type());
+        values.put(GPSFetching.COLUMN_CST_METER_STATUS,cst.getMeter_status());
         long row= db.insert(GPSFetching.TABLE_NAME, null, values);
         db.close(); // Closing database connection
         if (row== -1) {
@@ -156,6 +168,8 @@ public class ServiceDB extends SQLiteOpenHelper {
         values.put(ReadingsEntry.COLUMN_CST_PARCODE, rdg.getCst_ParCode());
         values.put(ReadingsEntry.COLUMN_CST_RDG, rdg.getRdg_value());
         values.put(ReadingsEntry.COLUMN_DATE, rdg.getDateTime());
+        values.put(ReadingsEntry.COLUMN_METER_STATUS,rdg.getMeter_status());
+        values.put(ReadingsEntry.COLUMN_DESCRIPTION,rdg.getDescription());
         long row= db.insert(ReadingsEntry.TABLE_NAME, null, values);
         db.close(); // Closing database connection
         if (row== -1) {
@@ -178,12 +192,13 @@ public class ServiceDB extends SQLiteOpenHelper {
         db.delete(ReadingsEntry.TABLE_NAME, ReadingsEntry._ID + " = " + id, null);
     }
 
-    public boolean InsertGPS(String Cst_Parcode,String X, String Y){
+    public boolean InsertGPS(String Cst_Parcode,String X, String Y,int meterType){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(GPSEntry.COLUMN_cst_parcode, Cst_Parcode);
         values.put(GPSEntry.COLUMN_GPS_X, X);
         values.put(GPSEntry.COLUMN_GPS_Y, Y);
+        values.put(GPSEntry.COLUMN_METER_TYPE,meterType);
         long row= db.insert(GPSEntry.TABLE_NAME, null, values);
         db.close(); // Closing database connection
         if (row== -1) {

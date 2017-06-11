@@ -22,6 +22,10 @@ public class ServiceDBContract {
         // Min and max temperatures for the day (stored as floats)
         public static final String COLUMN_GPS_Y = "cst_gps_y";
 
+        public static final String COLUMN_CST_METER_TYPE = "cst_meter_type";
+
+        public static final String COLUMN_CST_METER_STATUS = "cst_meter_status";
+
     }
 
     public static final class GPSEntry implements BaseColumns {
@@ -38,6 +42,8 @@ public class ServiceDBContract {
         // Min and max temperatures for the day (stored as floats)
         public static final String COLUMN_GPS_Y = "cst_gps_y";
 
+        public static final String COLUMN_METER_TYPE = "cst_meter_type";
+
     }
 
     public static final class ReadingsEntry implements BaseColumns {
@@ -53,7 +59,9 @@ public class ServiceDBContract {
         // e.g "clear" vs "sky is clear".
         public static final String COLUMN_DATE = "com_rdg_date";
 
+        public static final String COLUMN_METER_STATUS = "cst_meter_status";
 
+        public static final String COLUMN_DESCRIPTION = "cst_description";
     }
 
 }

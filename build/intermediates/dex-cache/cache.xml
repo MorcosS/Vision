@@ -2,95 +2,139 @@
 <items version="2" >
 
     <item
-        jar="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/exploded-aar/com.android.support/design/23.0.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="e5c61a3169221a89654ffcaaed47bba51cf071ad">
-        <dex dex="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/pre-dexed/debug/com.android.support-design-23.0.1_21f897080539b71042e33906a8805f8e52317115.jar" />
-    </item>
-    <item
-        jar="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/libs/ksoap2-android-assembly-2.4-jar-with-dependencies.jar"
-        jumboMode="false"
-        revision="23.0.1"
+        is-multidex="true"
+        jar="/Users/marcos/Coding World/StudioProjects/android-vision-master/visionSamples/ocr-reader/app/libs/ksoap2-android-assembly-2.4-jar-with-dependencies.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
         sha1="e8796346a9191a019e936210a2dc50662c57594b">
-        <dex dex="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/pre-dexed/debug/ksoap2-android-assembly-2.4-jar-with-dependencies_5a7684522732761c503ded29ce524bddd75b3f61.jar" />
+        <dex dex="/Users/marcos/Coding World/StudioProjects/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/transforms/dex/debug/folders/1000/2/ksoap2-android-assembly-2.4-jar-with-dependencies_321c3a0667830bd0c37d58d257fbec234ddbe4ab/classes.dex" />
     </item>
     <item
-        jar="/Users/MorcosS/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/1.7.2/112366d8158749e25532ebce162232c6e0fb20a5/gson-1.7.2.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="112366d8158749e25532ebce162232c6e0fb20a5">
-        <dex dex="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/pre-dexed/debug/gson-1.7.2_55652503e933a3064e3f67c2d962e6c35b7a5f73.jar" />
-    </item>
-    <item
-        jar="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/exploded-aar/com.android.volley/volley/1.0.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
+        is-multidex="true"
+        jar="/Users/marcos/.android/build-cache/2c0f8b72bc6e52253c7cd0257dca5501ff95dec5/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
         sha1="2cd4b982617e544728de0782d718a58ce1b06e3f">
-        <dex dex="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/pre-dexed/debug/com.android.volley-volley-1.0.0_137d989c3e9d09cad0715f78d630d27339376a5a.jar" />
+        <dex dex="/Users/marcos/Coding World/StudioProjects/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_36daa6e71b5aa7e58de6c086624c3a06b522d75d/classes.dex" />
     </item>
     <item
-        jar="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/9.0.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="cc178928721f3222b3b06bdfbd9497378ccb9792">
-        <dex dex="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-basement-9.0.0_494641d9027ad461be792867a32c363c5fede46e.jar" />
-    </item>
-    <item
-        jar="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
-        <dex dex="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.0.1_1dedef07762b61553ed02702b04d7972c6949800.jar" />
-    </item>
-    <item
-        jar="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-vision/9.0.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="f4e85eafa876cd7d7641244867dac3f88d71e866">
-        <dex dex="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-vision-9.0.0_a10142ed5da15e7676d4ccf01040f55d3bd80903.jar" />
-    </item>
-    <item
-        jar="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/9.0.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="1941832901fc4e7a93300b53762e9f65d7650b99">
-        <dex dex="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-tasks-9.0.0_ef8aee1ee8b25dc25c49b0ce945586a57ed88f09.jar" />
-    </item>
-    <item
-        jar="/Users/MorcosS/android-sdks/extras/android/m2repository/com/android/support/support-annotations/23.0.1/support-annotations-23.0.1.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
-        <dex dex="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/pre-dexed/debug/support-annotations-23.0.1_3555a078ef28f5f1c69daccf23ee21535e8d11a5.jar" />
-    </item>
-    <item
-        jar="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/libs/internal_impl-23.0.1.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
-        <dex dex="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.1_f17b58aff2c2a274a3770efb060d120f8d5bd389.jar" />
-    </item>
-    <item
-        jar="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
+        is-multidex="true"
+        jar="/Users/marcos/.android/build-cache/4f2e7746c17f422b1fbeb6782230e0e5bf0565fe/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
         sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
-        <dex dex="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.0.1_b65d1883336b47592fefc3f64b988d7b89c17ed4.jar" />
+        <dex dex="/Users/marcos/Coding World/StudioProjects/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_0e8b58fa3109e9be8ee8d9a98ba919ed43b8c19e/classes.dex" />
     </item>
     <item
-        jar="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/9.0.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
+        is-multidex="true"
+        jar="/Users/marcos/.android/build-cache/787539b61f2cb43677b08005084444413efc8277/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="f4e85eafa876cd7d7641244867dac3f88d71e866">
+        <dex dex="/Users/marcos/Coding World/StudioProjects/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_e09373d5043e57cb4d259e94612c49b138687c4c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/marcos/.android/build-cache/edd9dd2a98288f51f9db35051cad016a51a69487/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="e5c61a3169221a89654ffcaaed47bba51cf071ad">
+        <dex dex="/Users/marcos/Coding World/StudioProjects/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_a9d260de0871301b3f5b7618b478551eeda70dd3/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/marcos/Coding World/StudioProjects/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="12920f9016b8b05acbc2af7cdc13cef6946fe7d3">
+        <dex dex="/Users/marcos/Coding World/StudioProjects/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_4feba94b2fd7f651c9807196ebef0396aa24683d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/marcos/.android/build-cache/9757fe6a70498acb68cb005fc0216beb485257cb/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="1941832901fc4e7a93300b53762e9f65d7650b99">
+        <dex dex="/Users/marcos/Coding World/StudioProjects/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_cb83487e4252fa61f1db93e85e95772be4028755/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/marcos/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/1.7.2/112366d8158749e25532ebce162232c6e0fb20a5/gson-1.7.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="112366d8158749e25532ebce162232c6e0fb20a5">
+        <dex dex="/Users/marcos/Coding World/StudioProjects/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/transforms/dex/debug/folders/1000/10/gson-1.7.2_40367abb8101f4292fa30d472349e335d4610902/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/marcos/Coding World/StudioProjects/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="bbf67e1eec05ef48b713f981ae46366aad682691">
+        <dex dex="/Users/marcos/Coding World/StudioProjects/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_5e9e4d9ef8c03bf7f33dd02538a47bc06c9bf0fe/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/marcos/Coding World/android-sdks/extras/android/m2repository/com/android/support/support-annotations/23.0.1/support-annotations-23.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
+        <dex dex="/Users/marcos/Coding World/StudioProjects/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.0.1_8d69d4816e75a52190c93e9f0b486f6b81cef7c9/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/marcos/.android/build-cache/0b0b8537fd71e1c3d55b2eff291eb04252118189/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
         sha1="42df48c7305b08b14fa0e84561091b0c24d70d26">
-        <dex dex="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/pre-dexed/debug/com.google.firebase-firebase-common-9.0.0_8ca65d328503efa1bc38506d12e80cc3bab820b8.jar" />
+        <dex dex="/Users/marcos/Coding World/StudioProjects/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_a1953c0baed1399f6b7bb240e24536fbdc05f87f/classes.dex" />
     </item>
     <item
-        jar="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/9.0.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
+        is-multidex="true"
+        jar="/Users/marcos/.android/build-cache/4f2e7746c17f422b1fbeb6782230e0e5bf0565fe/output/jars/libs/internal_impl-23.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
+        <dex dex="/Users/marcos/Coding World/StudioProjects/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.0.1_8b1cf8f41f49422db2eb374294125a74d03874d7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/marcos/.android/build-cache/1366f7ec51dddc5912ce6ce33afbbe106718fade/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="cc178928721f3222b3b06bdfbd9497378ccb9792">
+        <dex dex="/Users/marcos/Coding World/StudioProjects/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_ec9c83cba64780dbed103470e974ae20ca3023d2/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/marcos/.android/build-cache/49642e67c5e7cc288f572cbb4314fdbbc012eedb/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
+        <dex dex="/Users/marcos/Coding World/StudioProjects/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_19066796b29079dc05a716a8e73dcd505a926cdc/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/marcos/.android/build-cache/5eabf087026472db51fac360704766ae9cdc7c63/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
         sha1="6f65c144283b31b4b9a70e6e7aa4c4a1c897d4b8">
-        <dex dex="/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-base-9.0.0_c6bc31d5c1672402a14e7cac1722e44cd0e3fde6.jar" />
+        <dex dex="/Users/marcos/Coding World/StudioProjects/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_a3c901b2e027d79150d3b8e6d20e7af568dc5f3b/classes.dex" />
     </item>
 
 </items>

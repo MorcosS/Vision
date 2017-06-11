@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.samples.vision.ocrreader.Databases.ServiceDB;
 import com.google.android.gms.samples.vision.ocrreader.Models.Customers;
 import com.google.gson.Gson;
@@ -20,11 +22,12 @@ import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.AndroidHttpTransport;
 
 public class Picker_Activity extends Activity {
-    private static String SOAP_ACTION1 = "http://tempuri.org/GetCustomersByCOD";
-    private static String NAMESPACE = "http://tempuri.org/";
-    private static String METHOD_NAME1 = "InsertReading";
-    private static String METHOD_NAME2 = "GetCustomersByCOD";
-    private static String URL = "http://62.68.240.219/webserv/webservice2.asmx";
+    public static String SOAP_ACTION1 = "http://tempuri.org/GetCustomersByCOD";
+    public static String NAMESPACE = "http://tempuri.org/";
+    public static String METHOD_NAME1 = "InsertReading";
+    public static String METHOD_NAME2 = "GetCustomersByCOD";
+    public static String METHOD_NAME3 = "ValidateUser";
+    public static String URL = "http://62.68.240.219/webserv/webservice2.asmx";
     private SoapObject request;
 
     @Override
@@ -32,6 +35,16 @@ public class Picker_Activity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_picker);
         request = new SoapObject(NAMESPACE, METHOD_NAME2);
+        Button insertRgd = (Button) findViewById(R.id.button4);
+        Button insertGps = (Button) findViewById(R.id.button5);
+        Button updateDate = (Button) findViewById(R.id.button7);
+       int Col_Type =  SignInActivity.sharedPref.getInt("Col_Type",-1);
+        if(Col_Type == 1){
+            insertGps.setVisibility(View.GONE);
+        }else if(Col_Type==2){
+            insertRgd.setVisibility(View.GONE);
+            updateDate.setVisibility(View.GONE);
+        }
     }
 
     public void InsertReading(View view){
@@ -47,7 +60,9 @@ public class Picker_Activity extends Activity {
     public void RecieveList(View view) {
 
             try {
-                request.addProperty("cod_id", LoginActivity.sharedPref.getString("Col_code",""));
+                request.addProperty("cod_id", SignInActivity.sharedPref.getString("Col_code",""));
+                request.addProperty("meter_type", "");
+
                 SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
 
                 envelope.setOutputSoapObject(request);

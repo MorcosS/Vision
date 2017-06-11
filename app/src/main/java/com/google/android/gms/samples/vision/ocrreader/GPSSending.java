@@ -15,8 +15,10 @@ import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.samples.vision.ocrreader.Databases.ServiceDB;
@@ -26,6 +28,8 @@ import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.AndroidHttpTransport;
+
+import java.util.List;
 
 public class GPSSending extends Activity {
     EditText cst_ParCode;
@@ -38,64 +42,84 @@ public class GPSSending extends Activity {
     public static LocationManager Coordinates;
     ServiceDB serviceDB;
     private  double lat,lon;
+    String meterType ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gpssending);
         cst_ParCode = (EditText) findViewById(R.id.editText3);
+        final String [] list = getResources().getStringArray(R.array.meter_type_array);
         Button send = (Button) findViewById(R.id.button6);
+
+        Spinner spinner = (Spinner) findViewById(R.id.spinner2);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                meterType = list[position];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         serviceDB = new ServiceDB(this);
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME1);
+                if(meterType!=null || !meterType.equals(list[0])) {
+                    SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME1);
 
-                try {
+                    try {
 
                         _getLocation();
-                    if (lat == 0 || lon == 0) {
-                        Toast.makeText(getApplicationContext()," بالرجاء تفعيل خدمات الموقع والمحاولة مرة أخري", Toast.LENGTH_LONG).show();
-                    } else {
-                        request.addProperty("Cst_ParCode", cst_ParCode.getText().toString());
-                        request.addProperty("x", lat + "");
-                        request.addProperty("y", lon + "");
-                        //Declare the version of the SOAP request
-                        SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+                        if (lat == 0 || lon == 0) {
+                            Toast.makeText(getApplicationContext(), " بالرجاء تفعيل خدمات الموقع والمحاولة مرة أخري", Toast.LENGTH_LONG).show();
+                        } else {
+                            request.addProperty("Cst_ParCode", cst_ParCode.getText().toString());
+                            request.addProperty("x", lat + "");
+                            request.addProperty("y", lon + "");
+                            request.addProperty("meter_type",1);
+                            //Declare the version of the SOAP request
+                            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
 
-                        envelope.setOutputSoapObject(request);
-                        envelope.dotNet = true;
-                        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-                        StrictMode.setThreadPolicy(policy);
+                            envelope.setOutputSoapObject(request);
+                            envelope.dotNet = true;
+                            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+                            StrictMode.setThreadPolicy(policy);
 
-                        try {
-                            AndroidHttpTransport androidHttpTransport = new AndroidHttpTransport(URL);
+                            try {
+                                AndroidHttpTransport androidHttpTransport = new AndroidHttpTransport(URL);
 
-                            //this is the actual part that will call the webservice
-                            androidHttpTransport.call(SOAP_ACTION1, envelope);
+                                //this is the actual part that will call the webservice
+                                androidHttpTransport.call(SOAP_ACTION1, envelope);
 
-                            // Get the SoapResult from the envelope body.
-                            SoapPrimitive result = (SoapPrimitive) envelope.getResponse();
+                                // Get the SoapResult from the envelope body.
+                                SoapPrimitive result = (SoapPrimitive) envelope.getResponse();
 
-                            if (result.toString().equals("1")) {
-                                Toast.makeText(getApplicationContext(), "تم ارسال الموقع بنجاح", Toast.LENGTH_LONG).show();
+                                if (result.toString().equals("1")) {
+                                    Toast.makeText(getApplicationContext(), "تم ارسال الموقع بنجاح", Toast.LENGTH_LONG).show();
 
-                            } else if (result.toString().equals("0")) {
-                                Toast.makeText(getApplicationContext(), "هذا المستخدم غير موجود بقاعدة البيانات بالرجاء المحاولة مرة أخري ", Toast.LENGTH_LONG).show();
+                                } else if (result.toString().equals("0")) {
+                                    Toast.makeText(getApplicationContext(), "هذا المستخدم غير موجود بقاعدة البيانات بالرجاء المحاولة مرة أخري ", Toast.LENGTH_LONG).show();
+
+                                }
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                Toast.makeText(getApplicationContext(), " لا يوجد اتصال بالشبكة، سيتم ارسال الطلب فور توافر اتصال بالانترنت", Toast.LENGTH_LONG).show();
+                                serviceDB.InsertGPS(cst_ParCode.getText().toString(), lat + "", lon + "",1);
 
                             }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            Toast.makeText(getApplicationContext(), " لا يوجد اتصال بالشبكة، سيتم ارسال الطلب فور توافر اتصال بالانترنت", Toast.LENGTH_LONG).show();
-                            serviceDB.InsertGPS(cst_ParCode.getText().toString(), lat + "", lon + "");
-
                         }
-                    }
-                    }catch(Exception exception){
+                    } catch (Exception exception) {
                         Toast.makeText(getApplicationContext(), "بالرجاء إعادة التصوير مرة أخري ", Toast.LENGTH_LONG).show();
                     }
-
+                }else{
+                    Toast.makeText(view.getContext(),"بالرجاء اختيار نوع عداد",Toast.LENGTH_LONG).show();
+                }
             }
         });
+
     }
 
     private void _getLocation() {

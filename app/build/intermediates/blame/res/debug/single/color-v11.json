@@ -1,10 +1,10 @@
 [
     {
-        "merged": "/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_dark.xml",
-        "source": "/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/color-v11/abc_background_cache_hint_selector_material_dark.xml"
+        "merged": "/Users/marcos/Coding World/StudioProjects/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_dark.xml",
+        "source": "/Users/marcos/.android/build-cache/49642e67c5e7cc288f572cbb4314fdbbc012eedb/output/res/color-v11/abc_background_cache_hint_selector_material_dark.xml"
     },
     {
-        "merged": "/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_light.xml",
-        "source": "/Users/MorcosS/Downloads/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/color-v11/abc_background_cache_hint_selector_material_light.xml"
+        "merged": "/Users/marcos/Coding World/StudioProjects/android-vision-master/visionSamples/ocr-reader/app/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_light.xml",
+        "source": "/Users/marcos/.android/build-cache/49642e67c5e7cc288f572cbb4314fdbbc012eedb/output/res/color-v11/abc_background_cache_hint_selector_material_light.xml"
     }
 ]
